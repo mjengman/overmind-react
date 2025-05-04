@@ -11,5 +11,8 @@
   },
   "scripts": {
     "dev:electron": "electron ."
+  },
+  "dependencies": {
+    "screenshot-desktop": "^1.15.1"
   }
 }
