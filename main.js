@@ -9,7 +9,7 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-async function analyzeImage(base64Image) {
+async function analyzeImage(base64Image, win) {
   const response = await openai.chat.completions.create({
     model: "gpt-4o",
     messages: [
@@ -35,7 +35,8 @@ async function analyzeImage(base64Image) {
   const output = response.choices[0].message.content;
   console.log('🧠 GPT-4 response:', output);
 
-  // TODO: send to renderer via IPC
+  // Send to renderer
+  win.webContents.send('gpt-response', output);
 }
 
 function createWindow() {
@@ -57,7 +58,7 @@ function createWindow() {
       const imageBuffer = fs.readFileSync(filePath);
       const base64Image = imageBuffer.toString('base64');
 
-      await analyzeImage(base64Image);
+      await analyzeImage(base64Image, win);
     } catch (err) {
       console.error('❌ Failed to process screenshot:', err);
     }
