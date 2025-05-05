@@ -18,7 +18,7 @@ async function analyzeImage(base64Image) {
         content: [
           {
             type: "text",
-            text: "What's happening in this screenshot?",
+            text: "If the screenshot includes any code, please do your best to solve or fix it.",
           },
           {
             type: "image_url",
