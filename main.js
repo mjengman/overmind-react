@@ -54,15 +54,14 @@ function createWindow() {
     try {
       const filePath = await screenshot({ filename: 'screenshot.png' });
       console.log('📸 Screenshot saved to:', filePath);
-
       const imageBuffer = fs.readFileSync(filePath);
       const base64Image = imageBuffer.toString('base64');
-
+      win.webContents.send('screenshot-taken', `data:image/png;base64,${base64Image}`);
       await analyzeImage(base64Image, win);
     } catch (err) {
       console.error('❌ Failed to process screenshot:', err);
     }
-  });
+  });  
 }
 
 app.whenReady().then(() => {

@@ -1,11 +1,9 @@
-// src/electron.d.ts
-
-export {};
-
-declare global {
-  interface Window {
-    electronAPI: {
-      onGPTResponse: (callback: (data: string) => void) => void;
-    };
+interface ElectronAPI {
+    onGPTResponse: (callback: (data: string) => void) => void;
+    onScreenshotTaken: (callback: (imageData: string) => void) => void;
   }
-}
+  
+  interface Window {
+    electronAPI?: ElectronAPI;
+  }
+  
