@@ -13,6 +13,8 @@
     "dev:electron": "electron ."
   },
   "dependencies": {
+    "dotenv": "^16.5.0",
+    "openai": "^4.97.0",
     "screenshot-desktop": "^1.15.1"
   }
 }
